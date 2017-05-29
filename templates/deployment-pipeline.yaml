@@ -183,12 +183,10 @@ Resources:
                 Category: Source
                 Owner: ThirdParty
                 Version: 1
-                Provider: GitHub
+                Provider: CodeCommit
               Configuration:
-                Owner: !Ref GitHubUser
-                Repo: !Ref GitHubRepo
-                Branch: !Ref GitHubBranch
-                OAuthToken: !Ref GitHubToken
+                BranchName: master
+                RepositoryName: ecs-demo-php-simple-app  
               OutputArtifacts:
                 - Name: App
               RunOrder: 1

@@ -7,6 +7,7 @@ Description: >
 Parameters:
   GitHubUser:
     Type: String
+    Default: kuku
     Description: Your username on GitHub.
 
   GitHubRepo:
@@ -21,6 +22,7 @@ Parameters:
 
   GitHubToken:
     Type: String
+    Default: riku
     Description: >
       Token for the user specified above. (https://github.com/settings/tokens)
 
@@ -59,13 +61,9 @@ Resources:
   DeploymentPipeline:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/ecs-refarch-continuous-deployment/templates/deployment-pipeline.yaml
+      TemplateURL: https://s3.amazonaws.com/ohad-bucket/deployment-pipeline.yaml
       Parameters:
         Cluster: !GetAtt Cluster.Outputs.ClusterName
-        GitHubUser: !Ref GitHubUser
-        GitHubToken: !Ref GitHubToken
-        GitHubRepo: !Ref GitHubRepo
-        GitHubBranch: !Ref GitHubBranch
         TargetGroup: !GetAtt LoadBalancer.Outputs.TargetGroup
         TemplateBucket: !Sub ecs-refarch-continuous-deployment-${AWS::Region}
 
